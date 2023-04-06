@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:travel/screens/post_screen.dart';
+import 'package:travel/screens/welcome_screen.dart';
 import 'package:travel/widgets/home_bottom_bar.dart';
-import '../widgets/home_app_bar.dart';
+// import '../widgets/home_app_bar.dart';
 
 class HomePage extends StatelessWidget {
   var category = [
@@ -16,9 +17,38 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(90.0),
-        child: HomeAppBar(),
+      // appBar: PreferredSize(
+      //   preferredSize: Size.fromHeight(90.0),
+      //   child: HomeAppBar(),
+      // ),
+      appBar: AppBar(
+        title: Text('Travel'),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Header'),
+              decoration: BoxDecoration(color: Colors.blue),
+            ),
+            ListTile(
+              title: Text('LogOut'),
+              leading: Icon(Icons.person),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('LogOut'),
+              leading: Icon(Icons.logout_outlined),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => WelcomeScreen()));
+              },
+            )
+          ],
+        ),
       ),
       body: SafeArea(
         child: Padding(
