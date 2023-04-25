@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:travel/drawer/about.dart';
+import 'package:travel/drawer/profile.dart';
+import 'package:travel/drawer/setting.dart';
+import 'package:travel/pages/places.dart';
 import 'package:travel/screens/post_screen.dart';
 import 'package:travel/screens/welcome_screen.dart';
 import 'package:travel/widgets/home_bottom_bar.dart';
@@ -17,26 +21,59 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: PreferredSize(
-      //   preferredSize: Size.fromHeight(90.0),
-      //   child: HomeAppBar(),
-      // ),
       appBar: AppBar(
-        title: Text('Travel'),
+        title: Text('Selamat Datang'),
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text('Header'),
-              decoration: BoxDecoration(color: Colors.blue),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    radius: 30.0,
+                    backgroundImage: AssetImage("images/nova.jpg"),
+                  ),
+                  SizedBox(height: 10.0),
+                  Text(
+                    'I Putu Nova Artadi',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
             ),
             ListTile(
-              title: Text('LogOut'),
+              title: Text('Profile'),
               leading: Icon(Icons.person),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()));
+              },
+            ),
+            ListTile(
+              title: Text('Setting'),
+              leading: Icon(Icons.settings),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SettingPage()));
+              },
+            ),
+            ListTile(
+              title: Text('About'),
+              leading: Icon(Icons.abc_outlined),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AboutPage()));
               },
             ),
             ListTile(
@@ -46,7 +83,15 @@ class HomePage extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => WelcomeScreen()));
               },
-            )
+            ),
+            ListTile(
+              title: Text('Places'),
+              leading: Icon(Icons.propane),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => PlacesPage()));
+              },
+            ),
           ],
         ),
       ),
